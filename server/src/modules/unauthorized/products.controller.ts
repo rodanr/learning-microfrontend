@@ -1,11 +1,13 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get} from '@nestjs/common';
+
+import products, {Product} from "@app/products";
 
 @Controller('products')
 export class ProductsController {
   constructor() {}
 
   @Get()
-  async index(): Promise<boolean> {
-    return true;
+  async index(): Promise<Product[]> {
+    return products;
   }
 }
