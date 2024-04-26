@@ -24,6 +24,9 @@ export default function HomeContent() {
                             {currency.format(product.price)}
                         </div>
                     </div>
+                    <div className="text-sm mt-4">
+                        {product.description}
+                    </div>
                 </div>
             ))
         }
