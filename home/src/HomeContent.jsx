@@ -1,6 +1,6 @@
 import React from "react";
 
-import {getProducts, getProductById} from "./products";
+import {getProducts, getProductById, currency} from "./products";
 
 export default function HomeContent() {
     const [products, setProducts] = React.useState([]);
@@ -19,6 +19,9 @@ export default function HomeContent() {
                     <div className="flex">
                         <div className="flex-grow font-bold">
                             <a>{product.name}</a>
+                        </div>
+                        <div className="flex-end">
+                            {currency.format(product.price)}
                         </div>
                     </div>
                 </div>
