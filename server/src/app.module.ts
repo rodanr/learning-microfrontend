@@ -3,7 +3,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 import { AuthorizedModule } from './modules/authorized/authorized.module';
-import { UnauthorizedModule } from './modules/unauthorized/unauthorized.module';
+import { UnauthorizedModule } from './modules/unauthorized/products.module';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersService } from './users/users.service';

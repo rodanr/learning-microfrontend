@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-@Controller('unauthorized')
-export class UnauthorizedController {
+@Controller('products')
+export class ProductsController {
   constructor() {}
 
   @Get()
