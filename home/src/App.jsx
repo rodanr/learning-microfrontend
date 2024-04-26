@@ -5,13 +5,16 @@ import "./index.scss";
 
 import Header from "./Header";
 import Footer from "./Footer";
+import HomeContent from "./HomeContent";
 
 const App = () => (
-  <div className="text-3xl mx-auto max-w-6xl">
-    <Header appMeta={{ appName: "Home" }} />
-    <div className="my-10">Home Page Content</div>
-    <Footer />
-  </div>
+    <div className="text-3xl mx-auto max-w-6xl">
+        <Header appMeta={{appName: "Home"}}/>
+        <div className="my-10">
+            <HomeContent/>
+        </div>
+        <Footer/>
+    </div>
 );
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App/>, document.getElementById("app"));
