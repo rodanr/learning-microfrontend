@@ -9,7 +9,7 @@ export default function Login() {
   const [username, setUsername] = React.useState("sally");
   const [password, setPassword] = React.useState("123");
 
-  if (!loggedIn) return null;
+  if (loggedIn) return null;
 
   return (
     <>
