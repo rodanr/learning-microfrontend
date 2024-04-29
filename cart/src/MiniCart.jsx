@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { cart, clearCart } from "./cart";
 import { currency } from "home/products";
 
 export default function MiniCart() {
-  const [items, setItems] = React.useState(undefined);
-  const [showCart, setShowCart] = React.useState(false);
+  const [items, setItems] = useState(undefined);
+  const [showCart, setShowCart] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setItems(cart.value?.cartItems);
     return cart.subscribe((c) => {
       setItems(c?.cartItems);
