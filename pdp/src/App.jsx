@@ -10,6 +10,8 @@ import PDPContent from "./PDPContent";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 
+import "remixicon/fonts/remixicon.css";
+
 const App = () => (
   <Router>
     <div className="text-3xl mx-auto max-w-6xl">
