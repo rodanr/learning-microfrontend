@@ -3,67 +3,72 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const Dotenv = require("dotenv-webpack");
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
-    output: {
-        publicPath: "http://localhost:3000/",
-    },
+  output: {
+    publicPath: "http://localhost:3000/",
+  },
 
-    resolve: {
-        extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
-    },
+  resolve: {
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+  },
 
-    devServer: {
-        port: 3000,
-        historyApiFallback: true,
-    },
+  devServer: {
+    port: 3000,
+    historyApiFallback: true,
+  },
 
-    module: {
-        rules: [
-            {
-                test: /\.m?js/,
-                type: "javascript/auto",
-                resolve: {
-                    fullySpecified: false,
-                },
-            },
-            {
-                test: /\.(css|s[ac]ss)$/i,
-                use: ["style-loader", "css-loader", "postcss-loader"],
-            },
-            {
-                test: /\.(ts|tsx|js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                },
-            },
-        ],
-    },
-
-    plugins: [
-        new ModuleFederationPlugin({
-            name: "home",
-            filename: "remoteEntry.js",
-            remotes: {},
-            exposes: {
-                "./Header": "./src/Header.jsx",
-                "./Footer": "./src/Footer.jsx",
-                "./products": "./src/products.js",
-            },
-            shared: {
-                ...deps,
-                react: {
-                    singleton: true,
-                    requiredVersion: deps.react,
-                },
-                "react-dom": {
-                    singleton: true,
-                    requiredVersion: deps["react-dom"],
-                },
-            },
-        }),
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-        }),
-        new Dotenv(),
+  module: {
+    rules: [
+      {
+        test: /\.m?js/,
+        type: "javascript/auto",
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+      {
+        test: /\.(css|s[ac]ss)$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.(ts|tsx|js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
     ],
+  },
+
+  plugins: [
+    new ModuleFederationPlugin({
+      name: "home",
+      filename: "remoteEntry.js",
+      remotes: {},
+      exposes: {
+        "./Header": "./src/Header.jsx",
+        "./Footer": "./src/Footer.jsx",
+        "./products": "./src/products.js",
+      },
+      remotes: {
+        home: "home@http://localhost:3000/remoteEntry.js",
+        pdp: "pdp@http://localhost:3001/remoteEntry.js",
+        cart: "cart@http://localhost:3002/remoteEntry.js",
+      },
+      shared: {
+        ...deps,
+        react: {
+          singleton: true,
+          requiredVersion: deps.react,
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: deps["react-dom"],
+        },
+      },
+    }),
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+    }),
+    new Dotenv(),
+  ],
 });
