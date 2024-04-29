@@ -5,4 +5,4 @@ import { ProductsController } from './products.controller';
 @Module({
   controllers: [ProductsController],
 })
-export class UnauthorizedModule {}
+export class ProductsModule {}

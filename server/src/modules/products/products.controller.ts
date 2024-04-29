@@ -1,19 +1,18 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 
-import products, {Product} from "@app/products";
+import products, { Product } from '../../products';
 
 @Controller('products')
 export class ProductsController {
-    constructor() {
-    }
+  constructor() {}
 
-    @Get()
-    async GetAll(): Promise<Product[]> {
-        return products;
-    }
+  @Get()
+  async index(): Promise<Product[]> {
+    return products;
+  }
 
-    @Get(':id')
-    async GetOneById(@Param('id') id: string): Promise<Product> {
-        return products.find(product => product.id === +id);
-    }
+  @Get(':id')
+  async show(@Param('id') id: string): Promise<Product> {
+    return products.find((product) => product.id === parseInt(id));
+  }
 }
