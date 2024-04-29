@@ -2,6 +2,7 @@ import React from "react";
 
 import { login, jwt } from "./cart";
 import Login from "./Login";
+import MiniCart from "./MiniCart";
 
 export default function CartContent() {
   const [token, setToken] = React.useState("");
@@ -11,9 +12,10 @@ export default function CartContent() {
   }, []);
 
   return (
-    <div>
+    <div className="flex">
       <div></div>JWT: {token}
       <Login />
+      <MiniCart />
     </div>
   );
 }
